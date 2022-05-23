@@ -4,17 +4,7 @@
 }
 
 #promo-block {
-    /*background: url("https://cdn-front.kwork.ru/pics/t3/55/8869626-1596462255.jpg") center 0 / cover no-repeat;*/
-    background-color: #414141;
-    width: 90%;
-    min-height: 20rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    margin-top: 75px;
 }
 
 .card {
@@ -35,7 +25,15 @@
 }
 
 .catalogue-card {
-    min-width: 300px;
+    min-width: 200px;
+    max-width: 400px;
+    transition: 0.3s;
+    margin: 10px;
+    padding: 10px;
+}
+
+.catalogue-card:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
@@ -51,6 +49,7 @@
 }
 
 .btn-primary:focus, .btn-primary.focus {
+    color: #b7b7b7;
     box-shadow: 0 0 0 .2rem rgba(94,61,52,0.5);
     background-color: #4f352d;
     border-color: #67544f;
@@ -75,4 +74,22 @@
 .navbar {
     background-color: white;
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#header-image {
+    height: 40px;
+    padding: 5px;
+}
+
+.price-tag {
+    font-size: 28px;
+}
+
+.card-image-wrapper {
+    padding: 40px;
+}
+
+.card-image {
+    max-height: 250px;
+    width: auto;
 }
