@@ -52,7 +52,7 @@ login_required();
         <div class="card-body">
             <?php
             $uid = $_SESSION['user_id'];
-            $user_info = execute_r("SELECT * FROM Users WHERE id=$uid LIMIT 1")[0];
+            $user_info = execute_r("SELECT * FROM Users WHERE id=$uid")[0];
             ?>
             <h3 style="color: #5e3d34" class="card-title"><?php echo $user_info['email']; ?></h3>
             <p class="card-subtitle text-success">Дата регистрации: <?php echo $user_info['registration_date']; ?></p>
@@ -76,16 +76,7 @@ login_required();
 
 <!-- FOOTER -->
 
-<div class="container">
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Обратная связь</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Поставщикам</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2022 MASKARADA</p>
-    </footer>
-</div>
+<?php printFooter(); ?>
 
 <!-- FOOTER -->
 

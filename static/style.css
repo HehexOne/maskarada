@@ -26,6 +26,11 @@
     transition: 0.3s;
     margin: 10px;
     padding: 10px;
+    height: 95%;
+}
+
+.row {
+    margin-bottom: 20px;
 }
 
 .catalogue-card:hover {

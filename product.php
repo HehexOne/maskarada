@@ -1,3 +1,21 @@
+<?php
+require('db_connection.php');
+require('utils.php');
+
+if (!isset($_GET['id'])) {
+    redirect('index.php');
+    exit();
+}
+
+$product_id = $_GET['id'];
+
+try {
+    $res = execute_r("SELECT * FROM Products WHERE id=$product_id")[0];
+} catch (Exception $e) {
+    redirect('index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -43,24 +61,18 @@
     <div style="flex-wrap: wrap-reverse" class="row">
         <div class="col">
             <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img style="max-height: 400px; width: auto" src="static/store-lorem.png">
+                <img style="max-height: 400px; width: auto" src="<?php echo $res['image_path']; ?>">
             </div>
         </div>
         <div class="col">
             <div class="card mb-5">
                 <div class="card-body">
-                    <h2 class="card-title">Lador маска для волос</h2>
-                    <p class="card-subtitle">Для сухих и ломких волос</p>
+                    <h2 class="card-title"><?php echo $res['name']; ?></h2>
+                    <p class="card-subtitle"><?php echo $res['subtitle']; ?></p>
                     <hr>
-                    <p class="card-text">Восстанавливающая маска Lador Hydro LPP Treatment в объеме 150 мл.
-                        предназначена для сухих и поврежденных волос. Оказывает укрепляющий эффект от корней до
-                        кончиков. В состав маски входит широкий ассортимент питательных веществ для здоровья кожи и
-                        волос. Средство содержит оптимальный баланс кислотности ph 5.5, улучшает состояние волос и кожи
-                        головы, уменьшает ломкость, предотвращает появления перхоти и секущихся кончиков. Благодаря
-                        коллагену и аминокислотному комплексу LPP волосы становятся более ровными, упругими, гладкими и
-                        блестящими.</p>
+                    <p class="card-text"><?php echo $res['description']; ?></p>
                     <hr>
-                    <p style="font-size: 35px" class="price-tag fw-light card-text">1999 рублей</p>
+                    <p style="font-size: 35px" class="price-tag fw-light card-text"><?php echo $res['price']; ?> рублей</p>
                     <button class="btn btn-success">Добавить в корзину</button>
                     <ul class="pagination mt-3">
                         <li class="page-item">
@@ -82,16 +94,7 @@
 
 <!-- FOOTER -->
 
-<div class="container">
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Обратная связь</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Поставщикам</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2022 MASKARADA</p>
-    </footer>
-</div>
+<?php printFooter(); ?>
 
 <!-- FOOTER -->
 

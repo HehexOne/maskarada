@@ -1,3 +1,7 @@
+<?php
+require('db_connection.php');
+require('utils.php')
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -57,183 +61,31 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+    <?php
+    $res = execute_r("SELECT id, name, subtitle, image_path, price FROM Products");
 
-            <!-- CARD -->
+    $counter = 0;
 
-            <div class="catalogue-card card">
-                <a style="text-decoration: none; color: #323232" href="product.php">
-                    <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                        <img class="card-image" src="static/store-lorem.png">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Маска для волос</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                        <p class="price-tag fw-light card-text">1999 руб.</p>
-                </a><br>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    foreach ($res as $row) {
+        if ($counter % 3 == 0) {
+            echo "</div><div class='row'>";
+        }
 
+        echo "<div class='col-md-4'>";
+        catalogueCard($row['id'], $row['name'], $row['subtitle'], $row['image_path'], $row['price']);
+        echo "</div>";
+        $counter += 1;
+    }
+    echo str_repeat("<div class='col-md-4'></div>", (3 - ($counter % 3)));
+    echo "</div>";
 
-        <!-- CARD -->
-
-    </div>
-    <div class="col-md-4">
-        <div class="catalogue-card card">
-            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img class="card-image" src="static/store-lorem.png">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Маска для волос</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                <p class="price-tag fw-light card-text">1999 руб.</p>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="catalogue-card card">
-            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img class="card-image" src="static/store-lorem.png">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Маска для волос</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                <p class="price-tag fw-light card-text">1999 руб.</p>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-
-        <!-- CARD -->
-
-        <div class="catalogue-card card">
-            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img class="card-image" src="static/store-lorem.png">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Маска для волос</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                <p class="price-tag fw-light card-text">1999 руб.</p>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- CARD -->
-
-    </div>
-    <div class="col-md-4">
-        <div class="catalogue-card card">
-            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img class="card-image" src="static/store-lorem.png">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Маска для волос</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                <p class="price-tag fw-light card-text">1999 руб.</p>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="catalogue-card card">
-            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                <img class="card-image" src="static/store-lorem.png">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Маска для волос</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                <p class="price-tag fw-light card-text">1999 руб.</p>
-                <button class="btn btn-success">Добавить в корзину</button>
-                <ul class="pagination mt-3">
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">+</button>
-                    </li>
-                    <li class="page-item disabled">
-                        <button class="page-link btn-primary" href="">1</button>
-                    </li>
-                    <li class="page-item">
-                        <button class="page-link btn-primary" href="">-</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+    ?>
 </div>
 <!-- MAIN -->
 
 <!-- FOOTER -->
 
-<div class="container">
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Обратная связь</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Поставщикам</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2022 MASKARADA</p>
-    </footer>
-</div>
+<?php printFooter(); ?>
 
 <!-- FOOTER -->
 
