@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <a href="index.html">
+            <a href="index.php">
                 <div class="card-image-wrapper">
                     <img style="width: 100%" src="static/logo-header.png">
                 </div>
@@ -27,7 +27,7 @@
                 <label class="form-label" for="pswd">Пароль</label><br>
                 <input class="form-control" name="pswd" id="pswd" type="password"><br>
                 <button style="width: 100%" class="btn btn-success mt-3">Войти</button>
-                <a href="register.html" style="width: 100%" class="btn btn-outline-success mt-2">Создать аккаунт</a>
+                <a href="register.php" style="width: 100%" class="btn btn-outline-success mt-2">Создать аккаунт</a>
             </form>
         </div>
         <div class="col-md-4"></div>

@@ -14,7 +14,7 @@
 <!-- HEADER -->
 <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img id="header-image" src="static/logo-header.png"></a>
+        <a class="navbar-brand" href="index.php"><img id="header-image" src="static/logo-header.png"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,16 @@
         <div class="collapse navbar-collapse is-flex is-flex-direction-row justify-content-between align-items-center"
              id="navbarNavAltMarkup">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Каталог</a></li>
-                <li class="nav-item"><a class="nav-link" href="tracking.html">Отслеживание</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">Каталог</a></li>
+                <li class="nav-item"><a class="nav-link" href="tracking.php">Отслеживание</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">Контакты</a></li>
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
                     <button class="page-link btn-primary" href="">1</button>
                 </li>
-                <li class="page-item"><a class="page-link btn-success text-success" href="cart.html">Корзина</a></li>
-                <li class="page-item"><a class="page-link btn-success" href="account.html">👤</a></li>
+                <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
+                <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
             </ul>
         </div>
     </div>
