@@ -41,8 +41,7 @@
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
             <h1 style="color: #4f352d" class="display-5 fw-bold lh-1">MASKARADA</h1>
-            <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
-                кстати</p>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda cupiditate esse facilis fugiat hic itaque laborum modi nam nihil odit quam quia quis temporibus totam ullam, velit. Atque, explicabo.</p>
         </div>
         <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-lg-block">
             <img class="rounded-lg-3" src="https://neoils.com/wp-content/uploads/shutterstock_642569911-2048x1365.jpg"

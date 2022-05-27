@@ -27,7 +27,9 @@
                 <li class="nav-item"><a class="nav-link" href="about.php">Контакты</a></li>
             </ul>
             <ul class="pagination mt-3">
-                <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
+                <li class="page-item disabled">
+                    <button class="page-link btn-primary" href="">1</button>
+                </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
             </ul>
@@ -41,10 +43,12 @@
     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
             <h1 style="color: #4f352d" class="display-5 fw-bold lh-1">MASKARADA</h1>
-            <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую, кстати</p>
+            <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
+                кстати</p>
         </div>
         <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-lg-block">
-            <img class="rounded-lg-3" src="https://neoils.com/wp-content/uploads/shutterstock_642569911-2048x1365.jpg" alt="" width="720">
+            <img class="rounded-lg-3" src="https://neoils.com/wp-content/uploads/shutterstock_642569911-2048x1365.jpg"
+                 alt="" width="720">
         </div>
     </div>
 </div>
@@ -56,127 +60,165 @@
         <div class="col-md-4">
 
             <!-- CARD -->
-            <a style="text-decoration: none; color: #323232" href="product.php">
-            <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
-            </div>
-            </a>
 
-            <!-- CARD -->
-
-        </div>
-        <div class="col-md-4">
             <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
+                <a style="text-decoration: none; color: #323232" href="product.php">
+                    <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                        <img class="card-image" src="static/store-lorem.png">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Маска для волос</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                        <p class="price-tag fw-light card-text">1999 руб.</p>
+                </a><br>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
+
+
+        <!-- CARD -->
+
+    </div>
+    <div class="col-md-4">
+        <div class="catalogue-card card">
+            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                <img class="card-image" src="static/store-lorem.png">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Маска для волос</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                <p class="price-tag fw-light card-text">1999 руб.</p>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-
-            <!-- CARD -->
-
-            <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
+    <div class="col-md-4">
+        <div class="catalogue-card card">
+            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                <img class="card-image" src="static/store-lorem.png">
             </div>
-
-            <!-- CARD -->
-
-        </div>
-        <div class="col-md-4">
-            <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="catalogue-card card">
-                <div class="card-image-wrapper d-flex justify-content-center align-items-center">
-                    <img class="card-image" src="static/store-lorem.png">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Маска для волос</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
-                    <p class="price-tag fw-light card-text">1999 руб.</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item"><button class="page-link btn-primary" href="">+</button></li>
-                        <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
-                        <li class="page-item"><button class="page-link btn-primary" href="">-</button></li>
-                    </ul>
-                </div>
+            <div class="card-body">
+                <h5 class="card-title">Маска для волос</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                <p class="price-tag fw-light card-text">1999 руб.</p>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+
+        <!-- CARD -->
+
+        <div class="catalogue-card card">
+            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                <img class="card-image" src="static/store-lorem.png">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Маска для волос</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                <p class="price-tag fw-light card-text">1999 руб.</p>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CARD -->
+
+    </div>
+    <div class="col-md-4">
+        <div class="catalogue-card card">
+            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                <img class="card-image" src="static/store-lorem.png">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Маска для волос</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                <p class="price-tag fw-light card-text">1999 руб.</p>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="catalogue-card card">
+            <div class="card-image-wrapper d-flex justify-content-center align-items-center">
+                <img class="card-image" src="static/store-lorem.png">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Маска для волос</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Для сухих и ломких волос</h6>
+                <p class="price-tag fw-light card-text">1999 руб.</p>
+                <button class="btn btn-success">Добавить в корзину</button>
+                <ul class="pagination mt-3">
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">+</button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button class="page-link btn-primary" href="">1</button>
+                    </li>
+                    <li class="page-item">
+                        <button class="page-link btn-primary" href="">-</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 <!-- MAIN -->
 

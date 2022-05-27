@@ -1,3 +1,9 @@
+<?php
+require('db_connection.php');
+require('utils.php');
+
+login_required();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -44,9 +50,13 @@
 <div class="container mb-5">
     <div class="card">
         <div class="card-body">
-            <h3 style="color: #5e3d34" class="card-title">alice-wonderland@mail.ru</h3>
-            <p class="card-subtitle text-success">Регистрация: 2022-03-04 10:14:23</p>
-            <a class="btn btn-outline-danger mt-3" href="/logout">Выход из аккаунта</a>
+            <?php
+            $uid = $_SESSION['user_id'];
+            $user_info = execute_r("SELECT * FROM Users WHERE id=$uid LIMIT 1")[0];
+            ?>
+            <h3 style="color: #5e3d34" class="card-title"><?php echo $user_info['email']; ?></h3>
+            <p class="card-subtitle text-success">Дата регистрации: <?php echo $user_info['registration_date']; ?></p>
+            <a class="btn btn-outline-danger mt-3" href="/logout.php">Выход из аккаунта</a>
             <hr>
             <h4 class="mb-5">Ваши заказы</h4>
             <a class="lk-order-link" href="#">

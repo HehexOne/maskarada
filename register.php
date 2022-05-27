@@ -1,3 +1,9 @@
+<?php
+require('db_connection.php');
+require('utils.php');
+
+unauthorized_required();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -20,8 +26,14 @@
                     <img style="width: 100%" src="static/logo-header.png">
                 </div>
             </a>
-            <h2 class="mt-3">Регистрация</h2><br>
-            <form action="" method="post">
+            <h2 class="mt-3">Регистрация</h2>
+            <p class="fw-light fst-italic small">Чтобы продолжить, необходимо создать аккаунт</p><br>
+            <?php
+            if (isset($_GET['error'])) {
+                echo "<div class='alert alert-danger'>Проверьте правильность введённых данных</div>";
+            }
+            ?>
+            <form action="registration.php" method="post">
                 <label class="form-label" for="mail">Почта</label><br>
                 <input class="form-control" name="mail" id="mail" type="email"><br>
                 <label class="form-label" for="pswd">Пароль</label><br>
