@@ -1,3 +1,7 @@
+<?php
+require('utils.php');
+login_required();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>

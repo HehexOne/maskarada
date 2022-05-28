@@ -2,6 +2,10 @@
 require('db_connection.php');
 require('utils.php');
 
+login_required();
+
+$uid = $_SESSION['user_id'];
+
 if (!isset($_GET['id'])) {
     redirect('index.php');
     exit();
@@ -15,6 +19,22 @@ try {
     redirect('index.php');
     exit();
 }
+
+if (isset($_POST['command'])) {
+    $cmd = $_POST['command'];
+    if ($cmd == 'add_to_cart') {
+        if (isset($_POST['quantity'])) {
+            $qnt = $_POST['quantity'];
+            execute("INSERT INTO ProductInCart(cart_id, product_id, quantity) VALUES ((SELECT id FROM UserCart WHERE user_id=$uid LIMIT 1), $product_id, $qnt);");
+        }
+    } else if ($cmd == 'delete_from_cart') {
+        execute("DELETE ProductInCart FROM ProductInCart WHERE product_id=$product_id AND cart_id=(SELECT id FROM UserCart WHERE user_id=$uid LIMIT 1);");
+    }
+}
+
+$cart_count = getCartCount();
+$product_in_cart = getQuantity($product_id);
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -46,7 +66,7 @@ try {
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary" href=""><?php echo $cart_count ?></button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
@@ -72,19 +92,47 @@ try {
                     <hr>
                     <p class="card-text"><?php echo $res['description']; ?></p>
                     <hr>
-                    <p style="font-size: 35px" class="price-tag fw-light card-text"><?php echo $res['price']; ?> рублей</p>
-                    <button class="btn btn-success">Добавить в корзину</button>
-                    <ul class="pagination mt-3">
-                        <li class="page-item">
-                            <button class="page-link btn-primary" href="">+</button>
-                        </li>
-                        <li class="page-item disabled">
-                            <button class="page-link btn-primary" href="">1</button>
-                        </li>
-                        <li class="page-item">
-                            <button class="page-link btn-primary" href="">-</button>
-                        </li>
-                    </ul>
+                    <p style="font-size: 35px" class="price-tag fw-light card-text"><?php echo $res['price']; ?>
+                        рублей</p>
+                    <?php
+                    if ($product_in_cart == 0) {
+                        ?>
+                        <form action="" method="post">
+                            <input type="hidden" name="command" id="command" value="add_to_cart">
+                            <button type="submit" class="btn btn-success">Добавить в корзину</button>
+                            <ul id="quantity-selector" class="pagination mt-3">
+                                <li class="page-item">
+                                    <a onclick="decrementValue();" class="page-link btn-primary">-</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <input id="quantity" name="quantity" style="width: 60px; text-align: center"
+                                           type="number"
+                                           min="1" max="10" class="page-link btn-primary" value="1">
+                                </li>
+                                <li class="page-item">
+                                    <a onclick="incrementValue();" class="page-link btn-primary">+</a>
+                                </li>
+                            </ul>
+                        </form>
+                    <?php } else { ?>
+                        <form action="" method="post">
+                            <input type="hidden" name="command" id="command" value="delete_from_cart">
+                            <button type="submit" class="btn btn-outline-danger">Удалить из корзины</button>
+                            <ul id="quantity-selector" class="pagination mt-3">
+                                <li class="page-item disabled">
+                                    <a onclick="decrementValue();" class="page-link btn-primary">-</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <input id="quantity" name="quantity" style="width: 60px; text-align: center"
+                                           type="number" class="page-link btn-primary"
+                                           value="<?php echo $product_in_cart ?>">
+                                </li>
+                                <li class="page-item disabled">
+                                    <a onclick="incrementValue();" class="page-link btn-primary">+</a>
+                                </li>
+                            </ul>
+                        </form>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -93,7 +141,6 @@ try {
 <!-- MAIN -->
 
 <!-- FOOTER -->
-
 <?php printFooter(); ?>
 
 <!-- FOOTER -->
@@ -101,5 +148,30 @@ try {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+<script>
+    function incrementValue() {
+        let value = parseInt(document.getElementById('quantity').value);
+        value = isNaN(value) ? 1 : value;
+        value++;
+        if (value > 10) {
+            value = 10;
+        } else if (value < 1) {
+            value = 1;
+        }
+        document.getElementById('quantity').value = value;
+    }
+
+    function decrementValue() {
+        let value = parseInt(document.getElementById('quantity').value);
+        value = isNaN(value) ? 1 : value;
+        value--;
+        if (value > 10) {
+            value = 10;
+        } else if (value < 1) {
+            value = 1;
+        }
+        document.getElementById('quantity').value = value;
+    }
+</script>
 </body>
 </html>

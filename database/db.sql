@@ -1,7 +1,8 @@
 USE shop_db;
 
 DROP EVENT IF EXISTS StatusUpdater;
-DROP TABLE IF EXISTS ProductInOrder, Orders, Products, Users;
+DROP EVENT IF EXISTS CartChecker;
+DROP TABLE IF EXISTS UserCart, ProductInCart, ProductInOrder, Orders, OrderStatus, Products, Users;
 
 
 CREATE TABLE Users
@@ -22,6 +23,12 @@ CREATE TABLE Products
     price       DOUBLE UNSIGNED NOT NULL
 );
 
+CREATE TABLE OrderStatus
+(
+    id   INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(32)
+);
+
 CREATE TABLE Orders
 (
     id               INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -31,8 +38,9 @@ CREATE TABLE Orders
     receiver_phone   VARCHAR(11)                NOT NULL,
     receiver_address VARCHAR(512)               NOT NULL,
     comments         VARCHAR(256)     DEFAULT '',
-    status           INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES Users (id) ON UPDATE CASCADE ON DELETE CASCADE
+    status_id        INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (status_id) REFERENCES OrderStatus (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE ProductInOrder
@@ -45,17 +53,56 @@ CREATE TABLE ProductInOrder
     FOREIGN KEY (product_id) REFERENCES Products (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE UserCart
+(
+    id            INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    last_modified DATETIME DEFAULT NOW(),
+    user_id       INTEGER UNSIGNED UNIQUE,
+    FOREIGN KEY (user_id) REFERENCES Users (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+CREATE TABLE ProductInCart
+(
+    id         INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    cart_id    INTEGER UNSIGNED,
+    product_id INTEGER UNSIGNED,
+    quantity   INTEGER UNSIGNED,
+    FOREIGN KEY (cart_id) REFERENCES UserCart (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES Products (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
 CREATE EVENT StatusUpdater
     ON SCHEDULE EVERY 5 SECOND
         STARTS CURRENT_TIMESTAMP ENDS CURRENT_TIMESTAMP + INTERVAL 365 DAY
     DO
     UPDATE Orders
-    SET status = CASE
-                     WHEN EXTRACT(MINUTE FROM NOW() - date) >= 3 THEN 3
-                     WHEN EXTRACT(MINUTE FROM NOW() - date) >= 2 THEN 2
-                     WHEN EXTRACT(MINUTE FROM NOW() - date) >= 1 THEN 1
-                     ELSE 0 END;
+    SET status_id = CASE
+                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 3 THEN 4
+                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 2 THEN 3
+                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 1 THEN 2
+                        ELSE 1 END;
 
+
+CREATE EVENT CartChecker
+    ON SCHEDULE EVERY 5 SECOND
+        STARTS CURRENT_TIMESTAMP ENDS CURRENT_TIMESTAMP + INTERVAL 365 DAY
+    DO
+    DELETE ProductInCart
+    FROM ProductInCart
+             INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
+    WHERE EXTRACT(MINUTE FROM NOW() - last_modified) >= 30;
+
+
+INSERT INTO OrderStatus(id, name)
+VALUES (1, 'Подтверждение заказа');
+INSERT INTO OrderStatus(id, name)
+VALUES (2, 'Сборка заказа');
+INSERT INTO OrderStatus(id, name)
+VALUES (3, 'Доставка заказа');
+INSERT INTO OrderStatus(id, name)
+VALUES (4, 'Заказ доставлен');
 
 INSERT INTO Products(name, subtitle, image_path, description, price)
 VALUES ('WellDerma Механический массажёр для лица Face Lifting Pad', 'Для контурного массажа', 'static/data/well.png', 'Ручной массажер для контурного массажа лица, зоны декольте, ключиц и других участков тела.

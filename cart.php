@@ -1,3 +1,8 @@
+<?php
+require('utils.php');
+require('db_connection.php');
+login_required();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -28,7 +33,7 @@
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary" href="">1</button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
@@ -60,13 +65,13 @@
                             <p style="color:gray;">1999 руб.</p>
                             <ul class="pagination">
                                 <li class="page-item">
-                                    <button class="page-link btn-primary">+</button>
+                                    <button class="page-link btn-primary">-</button>
                                 </li>
                                 <li class="page-item disabled">
                                     <button class="page-link btn-primary">5</button>
                                 </li>
                                 <li class="page-item">
-                                    <button class="page-link btn-primary">-</button>
+                                    <button class="page-link btn-primary">+</button>
                                 </li>
                             </ul>
                             <p class="price-tag fw-light text-dark">9995 руб.</p>

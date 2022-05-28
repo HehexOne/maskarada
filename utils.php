@@ -20,7 +20,7 @@ function unauthorized_required(): void
 
 function catalogueCard($id, $name, $subtitle, $image_path, $price): void
 {
-    echo "<div product-id='$id' class='catalogue-card card'>
+    echo "<div class='catalogue-card card'>
                 <a style='text-decoration: none; color: #323232' href='product.php?id=$id'>
                     <div class='card-image-wrapper d-flex justify-content-center align-items-center'>
                         <img class='card-image' src='$image_path'>
@@ -29,19 +29,18 @@ function catalogueCard($id, $name, $subtitle, $image_path, $price): void
                         <h5 class='card-title'>$name</h5>
                         <h6 class='card-subtitle mb-2 text-muted'>$subtitle</h6>
                         <p class='price-tag fw-light card-text'>$price руб.</p>
-                </a><br>
-                <button class='btn btn-success'>Добавить в корзину</button>
-                <ul class='pagination mt-3'>
-                    <li class='page-item'>
-                        <button class='page-link btn-primary' href=''>+</button>
-                    </li>
-                    <li class='page-item disabled'>
-                        <button class='page-link btn-primary' href=''>1</button>
-                    </li>
-                    <li class='page-item'>
-                        <button class='page-link btn-primary' href=''>-</button>
-                    </li>
-                </ul>
+                </a><br>";
+    if (!isset($_SESSION['user_id'])) {
+        echo "<a href='product.php?id=$id' class='btn btn-success'>Добавить в корзину</a>";
+    } else {
+        $qnt = getQuantity($id);
+        if ($qnt != 0) {
+            echo "<a href='product.php?id=$id' class='btn btn-outline-danger'>Удалить из корзины</a>";
+        } else {
+            echo "<a href='product.php?id=$id' class='btn btn-success'>Добавить в корзину</a>";
+        }
+    }
+    echo "
             </div>
         </div>";
 }
@@ -59,4 +58,45 @@ function printFooter(): void
         <p class="text-center text-muted">© 2022 MASKARADA</p>
     </footer>
 </div>';
+}
+
+
+function getCartCount()
+{
+    if (!isset($_SESSION['user_id'])) {
+        return 0;
+    }
+    $uid = $_SESSION['user_id'];
+    $cart_count = execute_r("SELECT SUM(quantity) as `cart_sum` FROM ProductInCart
+    INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
+WHERE UC.user_id = $uid;")[0]['cart_sum'];
+
+    if (!$cart_count) {
+        $cart_count = 0;
+    }
+
+    updateCartLastModified();
+
+    return $cart_count;
+}
+
+function getQuantity($product_id)
+{
+    $uid = $_SESSION['user_id'];
+    $res = execute_r("SELECT quantity FROM ProductInCart
+         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
+WHERE UC.user_id = $uid AND product_id = $product_id;");
+    updateCartLastModified();
+    if ($res) {
+        return $res[0]['quantity'];
+    } else {
+        return 0;
+    }
+}
+
+
+function updateCartLastModified()
+{
+    $uid = $_SESSION['user_id'];
+    execute("UPDATE UserCart SET last_modified=NOW() WHERE user_id=$uid;");
 }

@@ -31,7 +31,7 @@ $_SESSION['user_id'] = null;
 <script>
     setTimeout(()=>{
         window.location.href = 'index.php';
-    }, 1500);
+    }, 2000);
 </script>
 </body>
 </html>

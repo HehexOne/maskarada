@@ -1,6 +1,6 @@
 <?php
 require('db_connection.php');
-require('utils.php')
+require('utils.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -32,7 +32,7 @@ require('utils.php')
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary" href=""><?php echo getCartCount(); ?></button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>

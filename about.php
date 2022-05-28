@@ -1,3 +1,6 @@
+<?php
+require('utils.php')
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
