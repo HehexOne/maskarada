@@ -34,7 +34,7 @@ login_required();
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary" href=""><?php echo getCartCount(); ?></button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
@@ -59,16 +59,21 @@ login_required();
             <a class="btn btn-outline-danger mt-3" href="/logout.php">Выход из аккаунта</a>
             <hr>
             <h4 class="mb-5">Ваши заказы</h4>
-            <a class="lk-order-link" href="#">
+            <?php
+                $res = getAccountOrders();
+                foreach ($res as $row) {
+            ?>
+            <a class="lk-order-link" href="tracking.php?id=<?php echo $row['id'];?>">
                 <div>
-                    <h5>🗒 Заказ #322332</h5>
-                    <p>ℹ Дата: 2022-03-04 12:10:01 | Итог: 9995 рублей</p>
+                    <h5>🗒 Заказ #<?php echo $row['id'];?></h5>
+                    <p>ℹ Дата: <?php echo $row['date'];?> | Итог: <?php echo $row['price'];?> рублей</p>
                 </div>
                 <div class="d-none d-lg-block d-md-block">
                     <p class="display-6">➜</p>
                 </div>
             </a>
             <hr style="opacity: 0.15">
+            <?php } ?>
         </div>
     </div>
 </div>

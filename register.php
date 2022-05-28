@@ -35,11 +35,11 @@ unauthorized_required();
             ?>
             <form action="registration.php" method="post">
                 <label class="form-label" for="mail">Почта</label><br>
-                <input class="form-control" name="mail" id="mail" type="email"><br>
+                <input class="form-control" name="mail" minlength="8" maxlength="64" id="mail" type="email" required><br>
                 <label class="form-label" for="pswd">Пароль</label><br>
-                <input class="form-control" name="pswd" id="pswd" type="password"><br>
+                <input class="form-control" name="pswd" id="pswd" minlength="8" maxlength="32" type="password" required><br>
                 <label class="form-label" for="pswdrpt">Повтор пароля</label><br>
-                <input class="form-control" name="pswdrpt" id="pswdrpt" type="password"><br>
+                <input class="form-control" name="pswdrpt" id="pswdrpt" minlength="8" maxlength="32" type="password" required><br>
                 <button style="width: 100%" class="btn btn-success mt-3">Создать аккаунт</button>
                 <a href="login.php" style="width: 100%" class="btn btn-outline-success mt-2">Уже есть аккаунт?</a>
             </form>

@@ -95,8 +95,95 @@ WHERE UC.user_id = $uid AND product_id = $product_id;");
 }
 
 
-function updateCartLastModified()
+function updateCartLastModified(): void
 {
     $uid = $_SESSION['user_id'];
     execute("UPDATE UserCart SET last_modified=NOW() WHERE user_id=$uid;");
+}
+
+function getProductsInCart(): bool|array
+{
+    $uid = $_SESSION['user_id'];
+    $query = "SELECT P.id as `id`,
+       P.name as `name`,
+       P.price as `price`,
+       ProductInCart.quantity as `quantity`,
+       P.image_path as `image_path`,
+       (P.price * ProductInCart.quantity) as `final_price`
+FROM ProductInCart
+         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
+         INNER JOIN Products P on ProductInCart.product_id = P.id
+WHERE UC.user_id = $uid;";
+    return execute_r($query);
+}
+
+function getCartPrice()
+{
+    $uid = $_SESSION['user_id'];
+    $query = "SELECT SUM(P.price * ProductInCart.quantity) as `final_price`
+FROM ProductInCart
+         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
+         INNER JOIN Products P on ProductInCart.product_id = P.id
+WHERE UC.user_id = $uid;";
+
+    updateCartLastModified();
+
+    $res = execute_r($query)[0]['final_price'];
+    if ($res) {
+        return $res;
+    } else {
+        return 0;
+    }
+}
+
+function clearCart(): void
+{
+    $uid = $_SESSION['user_id'];
+    execute("DELETE ProductInCart FROM ProductInCart INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id WHERE user_id=$uid;");
+    updateCartLastModified();
+}
+
+function getAccountOrders(): bool|array
+{
+    $uid = $_SESSION['user_id'];
+    $query = "SELECT Orders.id as `id`, Orders.date as `date`, SUM(PIO.quantity * P.price) as `price` FROM Orders
+                INNER JOIN ProductInOrder PIO on Orders.id = PIO.order_id
+                INNER JOIN Products P on PIO.product_id = P.id
+WHERE user_id=$uid GROUP BY Orders.id, Orders.date ORDER BY date DESC;";
+
+    return execute_r($query);
+}
+
+function getOrderInfo($order_id)
+{
+    $query = "SELECT Orders.id as `id`,
+       Orders.date as `date`,
+       receiver_name as `name`,
+       receiver_phone as `phone`,
+       receiver_address as `address`,
+       comments as `comm`,
+       OS.name as `status`,
+       SUM(PIO.quantity * P.price) as `full_price`
+FROM Orders
+         INNER JOIN ProductInOrder PIO on Orders.id = PIO.order_id
+         INNER JOIN Products P on PIO.product_id = P.id
+    INNER JOIN OrderStatus OS on Orders.status_id = OS.id
+WHERE Orders.id=$order_id GROUP BY Orders.id;";
+
+    return execute_r($query)[0];
+}
+
+function getOrderProducts($order_id)
+{
+    $query = "SELECT P.id as `id`, image_path, name, quantity, price, price * quantity as `full_price`
+FROM ProductInOrder
+         INNER JOIN Products P on ProductInOrder.product_id = P.id
+WHERE order_id=$order_id;";
+    return execute_r($query);
+}
+
+function getUserIDbyOrderID($order_id)
+{
+    $query = "SELECT user_id FROM Orders WHERE id=$order_id";
+    return execute_r($query)[0]['user_id'];
 }

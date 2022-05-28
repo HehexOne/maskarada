@@ -35,9 +35,9 @@ unauthorized_required();
             ?>
             <form action="authorize.php" method="post">
                 <label class="form-label" for="mail">Почта</label><br>
-                <input class="form-control" name="mail" id="mail" type="email"><br>
+                <input class="form-control" name="mail" id="mail" minlength="8" maxlength="64" type="email" required><br>
                 <label class="form-label" for="pswd">Пароль</label><br>
-                <input class="form-control" name="pswd" id="pswd" type="password"><br>
+                <input class="form-control" name="pswd" id="pswd" minlength="8" maxlength="32" type="password" required><br>
                 <button style="width: 100%" class="btn btn-success mt-3">Войти</button>
                 <a href="register.php" style="width: 100%" class="btn btn-outline-success mt-2">Создать аккаунт</a>
             </form>

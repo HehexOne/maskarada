@@ -38,7 +38,7 @@ CREATE TABLE Orders
     receiver_phone   VARCHAR(11)                NOT NULL,
     receiver_address VARCHAR(512)               NOT NULL,
     comments         VARCHAR(256)     DEFAULT '',
-    status_id        INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+    status_id        INTEGER UNSIGNED DEFAULT 1 NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users (id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (status_id) REFERENCES OrderStatus (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -79,9 +79,9 @@ CREATE EVENT StatusUpdater
     DO
     UPDATE Orders
     SET status_id = CASE
-                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 3 THEN 4
-                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 2 THEN 3
-                        WHEN EXTRACT(MINUTE FROM NOW() - date) >= 1 THEN 2
+                        WHEN NOW() >= date + INTERVAL 90 SECOND THEN 4
+                        WHEN NOW() >= date + INTERVAL 60 SECOND THEN 3
+                        WHEN NOW() >= date + INTERVAL 30 SECOND THEN 2
                         ELSE 1 END;
 
 

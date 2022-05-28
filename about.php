@@ -1,4 +1,5 @@
 <?php
+require('db_connection.php');
 require('utils.php')
 ?>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@ require('utils.php')
                 <li class="nav-item"><a class="nav-link active" href="about.php">Контакты</a></li>
             </ul>
             <ul class="pagination mt-3">
-                <li class="page-item disabled"><button class="page-link btn-primary" href="">1</button></li>
+                <li class="page-item disabled"><button id="cart_counter" class="page-link btn-primary" href=""><?php echo getCartCount(); ?></button></li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
             </ul>

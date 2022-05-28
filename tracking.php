@@ -1,6 +1,16 @@
 <?php
+require('db_connection.php');
 require('utils.php');
 login_required();
+
+$order_id = -1;
+
+if (isset($_GET['id'])) {
+    $order_id = $_GET['id'];
+}
+
+$uid = $_SESSION['user_id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -32,7 +42,8 @@ login_required();
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary"
+                            href=""><?php echo getCartCount(); ?></button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
@@ -66,9 +77,12 @@ login_required();
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <label class="form-label" for="code">Код заказа</label>
-            <input class="form-control" id="code" name="code" type="text">
-            <button style="width: 100%" class="btn btn-primary mt-2" type="submit">Поиск</button>
+            <form action="" method="get">
+                <label class="form-label" for="id">Номер заказа</label>
+                <input class="form-control" id="id" name="id" type="text" minlength="1"
+                       value="<?php if ($order_id != -1) echo $order_id; ?>">
+                <button style="width: 100%" class="btn btn-primary mt-2" type="submit">Поиск</button>
+            </form>
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -77,24 +91,44 @@ login_required();
 <div class="container mt-5 is-flex is-flex-direction-column justify-content-center align-items-center">
     <div class="card">
         <div class="card-body">
-            <div class="alert alert-success" role="alert">
-                Заказ принят | в пути | доставлен
-            </div>
-            <h1 class="card-title">Заказ #22112312</h1>
-            <hr>
-            <p>Адрес доставки: г. Москва, ул. Тверская, д. 13, домофон 30</p>
-            <p>Дата заказа: 2022-03-04 12:10:01</p>
-            <hr>
-            <div class="position-block is-flex is-flex-direction-row justify-content-start align-items-start">
-                <img class="tracking-image" src="static/store-lorem.png">
-                <div class="tracking-position-info mt-2">
-                    <h5>Маска для волос</h5>
-                    <p style="color:gray;">(5 штук | 1999 руб.)</p>
-                    <p class="price-tag fw-light text-dark">9995 руб.</p>
+            <?php
+            if ($order_id == -1) {
+                echo "<div class='alert alert-primary'>Введите номер заказа, чтобы посмотреть информацию</div>";
+            } else if (getUserIDbyOrderID($order_id) != $uid) {
+                echo "<div class='alert alert-danger'>Такого заказа не существует!</div>";
+            } else {
+                $order_res = getOrderInfo($order_id);
+                ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $order_res['status']; ?>
                 </div>
-            </div>
-            <hr>
-            <h3>Итог: 9995 рублей</h3>
+                <h1 class="card-title">Заказ #<?php echo $order_res['id']; ?></h1>
+                <hr>
+                <p>Имя получателя: <?php echo $order_res['name']; ?></p>
+                <p>Телефон получателя: <?php echo $order_res['phone']; ?></p>
+                <p>Адрес доставки: <?php echo $order_res['address']; ?></p>
+                <p>Дата заказа: <?php echo $order_res['date']; ?></p>
+                <p>Комментарий: <?php echo $order_res['comm']; ?></p>
+                <hr>
+                <?php
+                $res_products = getOrderProducts($order_id);
+
+                foreach ($res_products as $row) {
+                    ?>
+                    <div class="position-block is-flex is-flex-direction-row justify-content-start align-items-start">
+                        <img class="tracking-image" src="<?php echo $row['image_path']; ?>">
+                        <div class="tracking-position-info mt-2">
+                            <h5><?php echo $row['name']; ?></h5>
+                            <p style="color:gray;">(<?php echo $row['quantity']; ?> штук(а) | <?php echo $row['price']; ?> руб.)</p>
+                            <p class="price-tag fw-light text-dark"><?php echo $row['full_price']; ?> руб.</p>
+                        </div>
+                    </div>
+                    <hr>
+                <?php } ?>
+                <h3>Итог: <?php echo $order_res['full_price']; ?> рублей</h3>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
