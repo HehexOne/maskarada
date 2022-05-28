@@ -33,7 +33,7 @@ login_required();
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
-                    <button id="cart_counter" class="page-link btn-primary" href="">1</button>
+                    <button id="cart_counter" class="page-link btn-primary" href=""><?php echo getCartCount(); ?></button>
                 </li>
                 <li class="page-item"><a class="page-link btn-success text-success" href="cart.php">Корзина</a></li>
                 <li class="page-item"><a class="page-link btn-success" href="account.php">👤</a></li>
@@ -54,24 +54,20 @@ login_required();
                 <div class="card-body">
                     <h2 style="color: #5e3d34" class="card-title">Корзина</h2>
                     <hr>
-                    <button class="btn btn-outline-danger">Очистить корзину</button>
+                    <a href="clear_cart.php" class="btn btn-outline-danger">Очистить корзину</a>
                     <hr>
                     <div class="position-block is-flex is-flex-direction-row justify-content-start align-items-start">
-                        <a style="text-decoration: none; color: #323232" href="product.php"><img class="tracking-image"
+                        <a style="text-decoration: none; color: #323232" href="product.php?id=<?php echo "id";?>"><img class="tracking-image"
                                                                                                   src="static/store-lorem.png"></a>
                         <div class="tracking-position-info mt-2">
-                            <a style="text-decoration: none; color: #323232" href="product.php"><h5>Маска для
-                                волос</h5></a>
+                            <a style="text-decoration: none; color: #323232" href="product.php?id=<?php echo "id";?>"><h5>Маска для волос</h5></a>
                             <p style="color:gray;">1999 руб.</p>
                             <ul class="pagination">
-                                <li class="page-item">
-                                    <button class="page-link btn-primary">-</button>
-                                </li>
                                 <li class="page-item disabled">
                                     <button class="page-link btn-primary">5</button>
                                 </li>
                                 <li class="page-item">
-                                    <button class="page-link btn-primary">+</button>
+                                    <a style="color: #a71919;" href="product.php?id=<?php echo "id";?>" class="page-link btn-outline-danger">Удалить из корзины</a>
                                 </li>
                             </ul>
                             <p class="price-tag fw-light text-dark">9995 руб.</p>
