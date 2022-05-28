@@ -30,11 +30,10 @@ if (isset($_POST['name']) && isset($_POST['phone']) && isset($_POST['address']))
 
         clearCart();
         redirect("success_order.php?order_id=$order_id");
-        exit();
     } else {
         redirect('cart.php?error=1');
-        exit();
     }
+    exit();
 }
 
 redirect('cart.php?error=1');
