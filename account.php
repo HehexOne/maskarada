@@ -56,6 +56,7 @@ login_required();
             ?>
             <h3 style="color: #5e3d34" class="card-title"><?php echo $user_info['email']; ?></h3>
             <p class="card-subtitle text-success">Дата регистрации: <?php echo $user_info['registration_date']; ?></p>
+            <p class="fw-light fst-italic small">Идентификатор пользователя: <?php echo $uid; ?></p>
             <a class="btn btn-outline-danger mt-3" href="/logout.php">Выход из аккаунта</a>
             <hr>
             <h4 class="mb-5">Ваши заказы</h4>
