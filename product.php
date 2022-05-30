@@ -177,5 +177,6 @@ $product_in_cart = getQuantity($product_id);
         document.getElementById('quantity').value = value;
     }
 </script>
+<?php yandex_metrika();?>
 </body>
 </html>
