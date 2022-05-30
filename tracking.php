@@ -92,7 +92,7 @@ $uid = $_SESSION['user_id'];
     <div class="card">
         <div class="card-body">
             <?php
-            if ($order_id == -1) {
+            if ($order_id == -1 || !is_numeric($order_id)) {
                 echo "<div class='alert alert-primary'>Введите номер заказа, чтобы посмотреть информацию</div>";
             } else if (getUserIDbyOrderID($order_id) != $uid) {
                 echo "<div class='alert alert-danger'>Такого заказа не существует!</div>";

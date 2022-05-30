@@ -13,6 +13,10 @@ if (!isset($_GET['id'])) {
 
 $product_id = $_GET['id'];
 
+if (!is_numeric($product_id)) {
+    redirect('index.php');
+}
+
 try {
     $res = execute_r("SELECT * FROM Products WHERE id=$product_id")[0];
 } catch (Exception $e) {
@@ -23,7 +27,7 @@ try {
 if (isset($_POST['command'])) {
     $cmd = $_POST['command'];
     if ($cmd == 'add_to_cart') {
-        if (isset($_POST['quantity'])) {
+        if (isset($_POST['quantity']) && is_numeric($_POST['quantity'])) {
             $qnt = $_POST['quantity'];
             execute("INSERT INTO ProductInCart(cart_id, product_id, quantity) VALUES ((SELECT id FROM UserCart WHERE user_id=$uid LIMIT 1), $product_id, $qnt);");
         }
