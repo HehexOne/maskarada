@@ -318,8 +318,6 @@ function placeOrder() {
     place_order_button.disabled = false;
 
     clearCart();
-
-    // $('#orderResultModal').modal('show');
 }
 
 function trackOrder() {
