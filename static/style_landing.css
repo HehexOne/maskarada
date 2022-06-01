@@ -5,6 +5,7 @@
 
 #promo-block {
     margin-top: 75px;
+    width: 90%;
 }
 
 .mw1200 {
@@ -136,4 +137,46 @@ body {
 
 .cart-image {
     width: 100px;
+}
+
+#cart_button {
+    padding: 5px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #4f352d;
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(24, 115, 73, 0.3);
+    cursor: pointer;
+}
+
+#cart_button:hover {
+    transition: 0.2s;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(32, 166, 102, 0.5);
+}
+
+#cart_icon {
+    width: 30px;
+    margin-bottom: 11px;
+}
+
+#cart_counter {
+    font-weight: 800;
+    color: white;
+    background: #198754;
+    border-radius: 100px;
+    text-align: center;
+    padding: 10px;
+    height: 45px;
+    width: 45px;
+}
+
+.product-image {
+    display: block;
+    width: 300px;
 }

@@ -49,6 +49,7 @@ require('utils.php');
             <h1 style="color: #4f352d" class="display-5 fw-bold lh-1">MASKARADA</h1>
             <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
                 кстати</p>
+            <a class="btn btn-outline-success btn-lg" href="/landing.php">Лэндинг-версия сайта</a>
         </div>
         <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-lg-block">
             <img class="rounded-lg-3" src="https://neoils.com/wp-content/uploads/shutterstock_642569911-2048x1365.jpg"
