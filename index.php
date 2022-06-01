@@ -7,7 +7,7 @@ require('utils.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maskarada</title>
+    <title>Maskarad</title>
     <link rel="shortcut icon" href="static/icon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -46,7 +46,7 @@ require('utils.php');
 <div id="promo-block" class="container py-5">
     <div style="background-image: url('/static/back.jpg');" class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
         <div style="color: white" class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 class="display-5 fw-bold lh-1">MASKARADA</h1>
+            <h1 class="display-5 fw-bold lh-1">MASKARAD</h1>
             <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
                 кстати</p>
             <a class="btn btn-outline-success btn-lg" href="/landing.php">Лэндинг-версия сайта</a>

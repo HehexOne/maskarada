@@ -1,3 +1,3 @@
-# MASKARADA
+# MASKARAD
 
 Beauty Web-Shop project

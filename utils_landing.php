@@ -36,7 +36,7 @@ function printFooter(): void
 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Поставщикам</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Вакансии</a></li>
         </ul>
-        <p class="text-center text-muted">© 2022 MASKARADA</p>
+        <p class="text-center text-muted">© 2022 MASKARAD</p>
     </footer>
 </div>';
 }
