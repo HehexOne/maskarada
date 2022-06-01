@@ -90,7 +90,7 @@ function yandex_metrika(): void
 function catalogueCardLanding($id, $name, $subtitle, $image_path, $price): void
 {
     echo "<div class='catalogue-card card'>
-                <a style='text-decoration: none; color: #323232' href='product.php?id=$id'>
+                <a style='text-decoration: none; color: #323232; cursor: pointer;' onclick='openProductModal($id);'>
                     <div class='card-image-wrapper d-flex justify-content-center align-items-center'>
                         <img class='card-image' src='$image_path'>
                     </div>

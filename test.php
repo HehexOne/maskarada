@@ -1,5 +1,2 @@
 <?php
-
-$counter = 2;
-
-echo $_SESSION['user_id'];
+echo print_r(preg_split("/:/", $_GET['text']));
