@@ -273,6 +273,6 @@ require('utils_landing.php');
         crossorigin="anonymous"></script>
 <?php yandex_metrika(); getProductsJsonScript();?>
 <script src="/static/jquery-3.6.0.js"></script>
-<script src="/static/cart.js"></script>
+<script src="/static/landing.min.js"></script>
 </body>
 </html>
