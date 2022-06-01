@@ -44,16 +44,12 @@ require('utils.php');
 
 <!-- MAIN -->
 <div id="promo-block" class="container py-5">
-    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 style="color: #4f352d" class="display-5 fw-bold lh-1">MASKARADA</h1>
+    <div style="background-image: url('/static/back.jpg');" class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div style="color: white" class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-5 fw-bold lh-1">MASKARADA</h1>
             <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
                 кстати</p>
             <a class="btn btn-outline-success btn-lg" href="/landing.php">Лэндинг-версия сайта</a>
-        </div>
-        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-lg-block">
-            <img class="rounded-lg-3" src="https://neoils.com/wp-content/uploads/shutterstock_642569911-2048x1365.jpg"
-                 alt="" width="720">
         </div>
     </div>
 </div>
