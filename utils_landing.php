@@ -1,23 +1,4 @@
 <?php
-function redirect($url): void
-{
-    header("Location: $url");
-}
-
-function login_required(): void
-{
-    if (!isset($_SESSION['user_id'])) {
-        redirect('login.php');
-    }
-}
-
-function unauthorized_required(): void
-{
-    if (isset($_SESSION['user_id'])) {
-        redirect('index.php');
-    }
-}
-
 function catalogueCard($id, $name, $subtitle, $image_path, $price): void
 {
     echo "<div class='catalogue-card card'>
@@ -60,100 +41,6 @@ function printFooter(): void
 </div>';
 }
 
-
-function getCartCount()
-{
-    if (!isset($_SESSION['user_id'])) {
-        return 0;
-    }
-    $uid = $_SESSION['user_id'];
-    $cart_count = execute_r("SELECT SUM(quantity) as `cart_sum` FROM ProductInCart
-    INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
-WHERE UC.user_id = $uid;")[0]['cart_sum'];
-
-    if (!$cart_count) {
-        $cart_count = 0;
-    }
-
-    updateCartLastModified();
-
-    return $cart_count;
-}
-
-function getQuantity($product_id)
-{
-    $uid = $_SESSION['user_id'];
-    $res = execute_r("SELECT quantity FROM ProductInCart
-         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
-WHERE UC.user_id = $uid AND product_id = $product_id;");
-    updateCartLastModified();
-    if ($res) {
-        return $res[0]['quantity'];
-    } else {
-        return 0;
-    }
-}
-
-
-function updateCartLastModified(): void
-{
-    $uid = $_SESSION['user_id'];
-    execute("UPDATE UserCart SET last_modified=NOW() WHERE user_id=$uid;");
-}
-
-function getProductsInCart(): bool|array
-{
-    $uid = $_SESSION['user_id'];
-    $query = "SELECT P.id as `id`,
-       P.name as `name`,
-       P.price as `price`,
-       ProductInCart.quantity as `quantity`,
-       P.image_path as `image_path`,
-       (P.price * ProductInCart.quantity) as `final_price`
-FROM ProductInCart
-         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
-         INNER JOIN Products P on ProductInCart.product_id = P.id
-WHERE UC.user_id = $uid;";
-    return execute_r($query);
-}
-
-function getCartPrice()
-{
-    $uid = $_SESSION['user_id'];
-    $query = "SELECT SUM(P.price * ProductInCart.quantity) as `final_price`
-FROM ProductInCart
-         INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id
-         INNER JOIN Products P on ProductInCart.product_id = P.id
-WHERE UC.user_id = $uid;";
-
-    updateCartLastModified();
-
-    $res = execute_r($query)[0]['final_price'];
-    if ($res) {
-        return $res;
-    } else {
-        return 0;
-    }
-}
-
-function clearCart(): void
-{
-    $uid = $_SESSION['user_id'];
-    execute("DELETE ProductInCart FROM ProductInCart INNER JOIN UserCart UC on ProductInCart.cart_id = UC.id WHERE user_id=$uid;");
-    updateCartLastModified();
-}
-
-function getAccountOrders(): bool|array
-{
-    $uid = $_SESSION['user_id'];
-    $query = "SELECT Orders.id as `id`, Orders.date as `date`, SUM(PIO.quantity * P.price) as `price` FROM Orders
-                INNER JOIN ProductInOrder PIO on Orders.id = PIO.order_id
-                INNER JOIN Products P on PIO.product_id = P.id
-WHERE user_id=$uid GROUP BY Orders.id, Orders.date ORDER BY date DESC;";
-
-    return execute_r($query);
-}
-
 function getOrderInfo($order_id)
 {
     $query = "SELECT Orders.id as `id`,
@@ -182,12 +69,6 @@ WHERE order_id=$order_id;";
     return execute_r($query);
 }
 
-function getUserIDbyOrderID($order_id)
-{
-    $query = "SELECT user_id FROM Orders WHERE id=$order_id";
-    return execute_r($query)[0]['user_id'];
-}
-
 function yandex_metrika(): void
 {
     echo '<!-- Yandex.Metrika counter -->
@@ -204,4 +85,40 @@ function yandex_metrika(): void
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/88943110" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->';
+}
+
+function catalogueCardLanding($id, $name, $subtitle, $image_path, $price): void
+{
+    echo "<div class='catalogue-card card'>
+                <a style='text-decoration: none; color: #323232' href='product.php?id=$id'>
+                    <div class='card-image-wrapper d-flex justify-content-center align-items-center'>
+                        <img class='card-image' src='$image_path'>
+                    </div>
+                    <div class='card-body'>
+                        <h5 class='card-title'>$name</h5>
+                        <h6 class='card-subtitle mb-2 text-muted'>$subtitle</h6>
+                        <p class='price-tag fw-light card-text'>$price руб.</p>
+                </a><br>
+                <a onclick='addToCart($id)' id='addToCart-$id' class='btn btn-success'>Добавить в корзину</a>
+            </div>
+        </div>";
+}
+
+function getProductsJsonScript(): void
+{
+    echo "<script> let products = {";
+    $res = execute_r("SELECT id, name, subtitle, image_path, price, description FROM Products");
+
+    foreach ($res as $row) {
+        $id = $row['id'];
+        $name = $row['name'];
+        $subtitle = $row['subtitle'];
+        $image_path = $row['image_path'];
+        $price = $row['price'];
+        $description = $row['description'];
+
+        echo "$id : {'id': $id, 'name': `$name`, 'subtitle': `$subtitle`, 'image_path': `$image_path`, 'price': $price, 'description': `$description`},";
+    }
+
+    echo "}; </script>";
 }

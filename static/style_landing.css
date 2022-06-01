@@ -1,0 +1,139 @@
+#main-block {
+    flex-grow: 1;
+    padding: 10px;
+}
+
+#promo-block {
+    margin-top: 75px;
+}
+
+.mw1200 {
+    max-width: 1200px;
+}
+
+#catalogue {
+    width: 90%;
+    margin: 30px 0;
+}
+
+.columns {
+    width: 100%;
+}
+
+.catalogue-card {
+    min-width: 200px;
+    max-width: 400px;
+    transition: 0.3s;
+    margin: 10px;
+    padding: 10px;
+    height: 95%;
+}
+
+.row {
+    margin-bottom: 20px;
+}
+
+.catalogue-card:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #5e3d34;
+    border-color: #7d655f;
+}
+
+.btn-primary:hover {
+    color: #ffffff;
+    background-color: #4f352d;
+    border-color: #67544f;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    color: #b7b7b7;
+    box-shadow: 0 0 0 .2rem rgba(94,61,52,0.5);
+    background-color: #4f352d;
+    border-color: #67544f;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #b7b7b7;
+    background-color: #67483e;
+    border-color: #8e7771;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #ffffff;
+    background-color: #5e3d34;
+    border-color: #7d655f;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(94,61,52,0.5);
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#header-image {
+    height: 40px;
+    padding: 5px;
+}
+
+.price-tag {
+    font-size: 28px;
+}
+
+.card-image-wrapper {
+    padding: 40px;
+}
+
+.card-image {
+    max-height: 200px;
+    width: auto;
+}
+
+.tracking-image {
+    max-height: 70px;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-body {
+    justify-content: center;
+}
+
+.lk-order-link {
+    text-decoration: none;
+    color: #323232;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: 0.2s;
+}
+
+.lk-order-link:hover {
+    color: #737373;
+}
+
+.cart-product {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+
+.cart-image {
+    width: 100px;
+}
