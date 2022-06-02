@@ -29,8 +29,8 @@ login_required();
              id="navbarNavAltMarkup">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" aria-current="page" href="index.php">Каталог</a></li>
-                <li class="nav-item"><a class="nav-link" href="tracking.php">Отслеживание</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" href="tracking.php">Отслеживание</a></li>
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
