@@ -27,8 +27,8 @@ require('utils.php');
              id="navbarNavAltMarkup">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Каталог</a></li>
-                <li class="nav-item"><a class="nav-link" href="tracking.php">Отслеживание</a></li>
                 <li class="nav-item"><a class="nav-link" href="about.php">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" href="tracking.php">Отслеживание</a></li>
             </ul>
             <ul class="pagination mt-3">
                 <li class="page-item disabled">
@@ -44,9 +44,9 @@ require('utils.php');
 
 <!-- MAIN -->
 <div id="promo-block" class="container py-5">
-    <div style="background-image: url('/static/back.jpg');" class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-        <div style="color: white" class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-            <h1 class="display-5 fw-bold lh-1">MASKARAD</h1>
+    <div id="promo-block-content"  style="background-image: url('/static/back.jpg');" class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 style="color: #5e3d34" class="display-5 fw-bold lh-1">MASKARAD</h1>
             <p class="lead">Онлайн-магазин всего на свете по лучшим ценам и с лучшими поставщиками, рекомендую,
                 кстати</p>
             <a class="btn btn-outline-success btn-lg" href="/landing.php">Лэндинг-версия сайта</a>

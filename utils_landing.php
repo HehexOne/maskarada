@@ -99,8 +99,8 @@ function catalogueCardLanding($id, $name, $subtitle, $image_path, $price): void
                         <h6 class='card-subtitle mb-2 text-muted'>$subtitle</h6>
                         <p class='price-tag fw-light card-text'>$price руб.</p>
                 </a><br>
-                <a onclick='addToCart($id)' id='addToCart-$id' class='btn btn-success'>Добавить в корзину</a>
             </div>
+            <a onclick='addToCart($id)' id='addToCart-$id' class='card-button btn btn-success'>Добавить в корзину</a>
         </div>";
 }
 

@@ -8,6 +8,10 @@
     width: 90%;
 }
 
+#promo-block-content {
+    border: 2px solid #7d655f;
+}
+
 .mw1200 {
     max-width: 1200px;
 }
@@ -27,7 +31,11 @@
     transition: 0.3s;
     margin: 10px;
     padding: 10px;
-    height: 95%;
+    height: 100%;
+}
+
+.col-md-4 {
+    margin-bottom: 10px;
 }
 
 .row {

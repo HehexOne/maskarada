@@ -1,4 +1,4 @@
-let cart = document.getElementById("cart");
+let landing = document.getElementById("landing");
 let place_order_button = document.getElementById('place_order_button');
 
 function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
@@ -38,7 +38,7 @@ function createCartBlock(id) {
                         </div>
                         <hr>
                     </div>`;
-    cart.innerHTML += block;
+    landing.innerHTML += block;
     updateCartPrice();
 }
 

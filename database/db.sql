@@ -1,3 +1,5 @@
+# База многостраничного сайта
+
 USE shop_db;
 
 DROP EVENT IF EXISTS shop_db.StatusUpdater;
@@ -149,6 +151,8 @@ VALUES ('Пенка для умывания с коллагеном FarmStay Col
         350);
 
 # ------------------------------------------------------------
+# База лэндинг сайта
+
 USE shop_db_landing;
 
 DROP EVENT IF EXISTS shop_db_landing.StatusUpdater;

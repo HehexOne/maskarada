@@ -6,4 +6,4 @@ login_required();
 
 clearCart();
 
-redirect('cart.php');
+redirect('landing.php');
