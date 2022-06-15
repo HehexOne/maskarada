@@ -1,6 +1,6 @@
 <?php
 try {
-    $pdo = new PDO('mysql:host=rc1a-q15bact6o09bok3o.mdb.yandexcloud.net;dbname=shop_db_landing',
+    $pdo = new PDO('mysql:host=rc1b-0v39lyyjg25sy9l1.mdb.yandexcloud.net;dbname=shop_db_landing',
         'manager',
         '1234567890',
         array(

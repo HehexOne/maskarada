@@ -7,7 +7,7 @@ if (isset($_POST['text'])) {
     $phone = $data['phone'];
     $address = $data['address'];
     $comm = $data['comm'];
-    $cart = $data['landing'];
+    $cart = $data['cart'];
 
     execute("INSERT INTO shop_db_landing.Orders(receiver_name, receiver_phone, receiver_address, comments) VALUES ('$name', '$phone', '$address', '$comm')");
     $order_id = execute_r("SELECT LAST_INSERT_ID() as `id`;")[0]['id'];

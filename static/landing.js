@@ -291,8 +291,6 @@ function placeOrder() {
         'cart': cart_string
     }
 
-    console.log(JSON.stringify(sending_data));
-
     $.post('/place_order_landing.php', {text: JSON.stringify(sending_data)}, function (data) {
         if (isNumber(data) && parseInt(data) !== 0) {
             form_alert.className = "alert alert-danger d-none";
