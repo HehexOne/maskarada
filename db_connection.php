@@ -7,7 +7,6 @@ try {
             PDO::MYSQL_ATTR_SSL_CA => 'database/CA.pem'
         ));
 } catch (PDOException $e) {
-    print $e;
     echo "<h3 style='color: red'>Не удалось подключиться к базе!</h3>";
     exit();
 }
